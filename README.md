@@ -1,7 +1,7 @@
 # SoundsLike
 Icefall recipe for the SoundsLike project under JSALT 2023.
 
-## Installation
+## Installation and setup
 
 First clone and install [icefall](https://github.com/k2-fsa/icefall). The following
 instructions may be useful: <https://icefall.readthedocs.io/en/latest/installation/index.html>.
@@ -14,7 +14,18 @@ git submodule add --name soundslike https://github.com/JSALT2023-FSM/soundslike_
 
 This should set you up for running the recipes.
 
-## Assets
+**NOTE:** For Lhotse installation, use the following command, since the master branch does
+not have the VoxPopuli recipe yet:
 
-- `ASR/download/CMUdict_IPA.txt`: CMUdict with IPA pronunciations
+```bash
+pip install https://github.com/desh2608/lhotse.git@recipe/voxpopuli
+```
 
+### CMU pronunciation dictionary
+
+To run the recipe using IPA, you will need to copy the dictionary to the `ASR/download` directory:
+
+```bash
+mkdir -p ASR/download
+cp /data/soundslike/cmuipa.txt ASR/download/cmuipa.txt
+```
