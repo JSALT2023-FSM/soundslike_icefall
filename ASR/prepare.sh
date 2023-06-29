@@ -67,7 +67,7 @@ if [ $stage -le 1 ] && [ $stop_stage -ge 1 ]; then
   # We assume that you have downloaded the voxpopuli corpus
   # to $dl_dir/voxpopuli
   mkdir -p data/manifests
-  lhotse prepare voxpopuli $dl_dir/voxpopuli data/manifests
+  lhotse prepare voxpopuli --task asr --lang en -j 4 $dl_dir/voxpopuli data/manifests
 fi
 
 if [ $stage -le 2 ] && [ $stop_stage -ge 2 ]; then
@@ -82,7 +82,6 @@ if [ $stage -le 3 ] && [ $stop_stage -ge 3 ]; then
   log "Stage 3: Compute fbank for voxpopuli"
 
   mkdir -p data/fbank
-
   $cmd exp/feats.log python local/compute_fbank_voxpopuli.py
 
   gunzip -c data/manifests/cuts_train.jsonl.gz | shuf | gzip -c > data/manifests/cuts_train_shuf.jsonl.gz
@@ -91,11 +90,8 @@ fi
 
 if [ $stage -le 4 ] && [ $stop_stage -ge 4 ]; then
   log "Stage 4: Compute fbank for musan"
-  if [ ! -e data/fbank/.musan.done ]; then
-    mkdir -p data/fbank
-    python3 ./local/compute_fbank_musan.py
-    touch data/fbank/.musan.done
-  fi
+  mkdir -p data/fbank
+  python local/compute_fbank_musan.py
 fi
 
 if [ $stage -le 5 ] && [ $stop_stage -ge 5 ]; then
