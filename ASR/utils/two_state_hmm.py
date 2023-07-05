@@ -19,7 +19,7 @@ from icefall.lexicon import UniqLexicon
 def two_state_hmm_topo(max_tokens, weight=0):
     """
     Given a max number of tokens/labels generates the FSA that allows all the 
-    possible strings from 1 to max tokens, using 2-stage HMM with out skiping
+    possible strings from 1 to max tokens, using 2-state HMM with out skiping
     """
     arcs = []
     auxlabels = []
@@ -44,7 +44,7 @@ def two_state_hmm_topo(max_tokens, weight=0):
 def two_state_linear_fsa(token_list):  
     """
     Given a token list generates the `linear FSA` where 
-    each token is forced to be emited twice or more (2-stage HMM with out skiping)
+    each token is forced to be emited twice or more (2-state HMM with out skiping)
     """
     s = 0
     arcs = []
