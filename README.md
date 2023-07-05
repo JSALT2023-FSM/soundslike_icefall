@@ -18,7 +18,7 @@ This should set you up for running the recipes.
 not have the VoxPopuli recipe yet:
 
 ```bash
-pip install https://github.com/desh2608/lhotse.git@recipe/voxpopuli
+pip install git+https://github.com/desh2608/lhotse.git@recipe/voxpopuli
 ```
 
 ### CMU pronunciation dictionary
